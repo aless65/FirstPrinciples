@@ -1,5 +1,6 @@
 ﻿using FirstPrinciples.Console.Features;
 using FluentAssertions;
+using NSubstitute.ExceptionExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,20 @@ namespace FirstPrinciples.Tests
             //Assert
 
             numero.Should().Be(1);
+        }
+
+        [Fact]
+        public void Prueba_Dividir0()
+        {
+            //Arrange 
+            int num1 = 5;
+            int num2 = 0;
+
+            //Act
+            Action resultado = () => calculadora.Dividir(num1, num2);
+
+            //Assert
+            resultado.Should().Throw<DivideByZeroException>();
         }
     }
 }
